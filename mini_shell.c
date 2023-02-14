@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:24:11 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/13 13:44:04 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:05:03 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ t_shell *parse_line(char *line)
 	return (shell);
 }
 
+void handle_sigint(int sig) {
+  printf("Caught signal %d: SIGINT\n", sig);
+  exit(0);
+}
 
 int main(int ac, char **av, char **env)
 {
@@ -112,7 +116,6 @@ int main(int ac, char **av, char **env)
 	t_shell *shell;
 
 	// shell = NULL;
-	shell = malloc(sizeof(t_shell) * 100);
 	shell = NULL;
 	if(ac != 1)
 	{
@@ -121,6 +124,7 @@ int main(int ac, char **av, char **env)
 	}
 	while(1)
 	{
+		signal(SIGQUIT, handle_sigint);
 		read = readline("\033[0;32m 😎 @Minishell>> \033[0m");
 		read = parse_redirect(read);
 		if (!read)

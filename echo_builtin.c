@@ -81,7 +81,7 @@ int	echo_builtin(char **cmd)
         write(1, "\n", 1);
         return (1);
     }
-    else if (cmd[1][0] == '-' && cmd[1][1] == 'n' && cmd[1][2] == '\0')
+    else if (cmd[1][0] == '-' && cmd[1][1] == 'n' /*&& cmd[1][2] == '\0'*/)
         f = 1;
 	if (f)
 		++j;
@@ -96,13 +96,13 @@ int	echo_builtin(char **cmd)
     return (1);
 }
 
-// int	main()
-// {
-// 	char **cmd;
+int	main()
+{
+	char **cmd;
 
-// 	cmd = ft_split("echo \"-n\"", ' ');
-// 	echo_builtin(cmd);
-// 	// printf("%s\n", cmd[0]);
-// 	// printf("%s\n", cmd[1]);
-// 	// printf("%s\n", cmd[2]);
-// }
+	cmd = ft_split("echo \"-nlwkfm Hello\"", ' ');
+	echo_builtin(cmd);
+	// printf("%s\n", cmd[0]);
+	// printf("%s\n", cmd[1]);
+	// printf("%s\n", cmd[2]);
+}

@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:28:01 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/13 13:43:41 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:54:21 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,7 +354,7 @@ tputs: This function is used to output a string of characters on a terminal scre
 // int	check_builtins(t_shell *shell)
 // {//kola built in nsiftha l fonction dyalha
 // 	if (!strncmp(shell->cmd, "echo"))
-// 		echo_builtin(shell->cmd + 1);
+// 		echo_builtin(shell->cmd);
 // 	else if(!strncmp(shell->cmd, "cd"))
 // 		cd_builtin(shell->cmd);
 // 	else if(!strncmp(shell->cmd, "export"))

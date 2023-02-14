@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:13:14 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/13 13:33:47 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:00:25 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ int	main(int ac, char **av, char **env)
 	char	cmds[256];
 	char	**cmd;
 
-	cmd = ft_split("cd", ' ');
+	cmd = ft_split("cd ../exec", ' ');
 	cd_builtin(env, cmd);
 	// printf("why\n");
 	// while(1);
