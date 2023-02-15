@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/12 17:45:52 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:08:20 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnstr(char *str, int n);
 int    echo_builtin(char **cmd);
 void	ft_putchar(char c);
+void unset_builtin(char **env, char *cmd);
 
 #endif
 

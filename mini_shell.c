@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:24:11 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/14 13:05:03 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/15 12:50:59 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,11 @@ int main(int ac, char **av, char **env)
 	{
 		signal(SIGQUIT, handle_sigint);
 		read = readline("\033[0;32m 😎 @Minishell>> \033[0m");
-		read = parse_redirect(read);
-		if (!read)
-			return (0);
-		shell = parse_line(read);
-		ft_execute(shell, env);
+		//  
+		// printf("%s\n", read);
+		unset_builtin(env, read);
+		system("leaks mini_shell");
+		// ft_execute(shell, env);
 		// while(shell)
 		// {
 		// 	printf("%s\t %d\n", shell->cmd, shell->type);
