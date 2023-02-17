@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:54:15 by aybiouss          #+#    #+#             */
-/*   Updated: 2022/10/25 11:17:18 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/17 16:18:00 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	lengthstring = ft_strlen(s);
-	if (!s[0] || start >= lengthstring || len == 0)
+	if (!s[start] || start >= lengthstring || len == 0)
 		return (ft_strdup(""));
 	if (len > (lengthstring - start))
 		len = lengthstring - start;

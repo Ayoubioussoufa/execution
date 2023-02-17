@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/14 18:08:20 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:13:43 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@
 # include <sys/wait.h>
 # include <sys/errno.h>
 # include <string.h>
+
+typedef struct s_env_elem
+{
+	char				*key;
+	char				*value;
+	struct s_env_elem	*next;
+	struct s_env_elem	*prev;
+}	t_env_elem;
+
+typedef struct s_env
+{
+	t_env_elem	*head;
+	char		**env;
+	int			size;
+}	t_env;
 
 typedef	struct	shell
 {
@@ -54,7 +69,22 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnstr(char *str, int n);
 int    echo_builtin(char **cmd);
 void	ft_putchar(char c);
-void unset_builtin(char **env, char *cmd);
+int	unset_builtin(char **cmd, char ***ev);
+int	ft_isalpha(int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *source);
+
+
+//env functions
+char	**convert_array(t_env *env);
+void	del_env(t_env *env);
+void	print_env(t_env *env);
+t_env	*create_env(char **tab);
+t_env	*init_env(t_env *env);
+t_env_elem	*new_env_elem(char *line);
+void	add_env_elem(t_env *env, t_env_elem *new);
+t_env_elem	*search_env_elem(t_env *env, char *key);
+void	del_env_elem(t_env *env, t_env_elem *elem);
 
 #endif
 

@@ -6,14 +6,11 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:13:14 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/14 13:00:25 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:21:03 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
-
-//search path
-//OLDPWD \\ PWD
 
 char	*ft_strdup(const char *source)
 {
@@ -118,24 +115,20 @@ char	**get_pathcd(char **env, int index)
 			}
 			i++;
 		}
-		// else if (index == 2)
-		// {
-		// 	if (ft_strnstr(env[i], "PWD", 3))
-		// 	{
-		// 		paths = ft_split(env[i] + 4, ':');
-		// 		// printf("%s\n", paths[0]);
-		// 		cmd = ft_strtrimbehind(paths[0], "/");
-		// 		// printf("%s\n", cmd);
-		// 		// printf("whatever\n");
-		// 		// while(1);
-		// 	// // if (!paths)
-		// 	// 	// error("Split function failed", 1);
-		// 		return (&cmd);
-		// 	}
-		// 	i++;
-		// }
 	}
 	return (paths);
+}
+
+void	protection_chdir(int i)
+{
+	if (i == 0)
+		return ;
+	else
+	{
+		// error();
+		printf("OMG FIX YOUR SHIT DUMBASS\n");
+		exit(1);
+	}
 }
 
 int cd_builtin(char **env, char **cmd)
@@ -150,63 +143,42 @@ int cd_builtin(char **env, char **cmd)
 	if (!strcmp(cmd[0], "cd") && !cmd[1])
 	{
 		path = get_pathcd(env, 1);
-		printf("%s\n", path[0]);
-		printf("%s\n", path[1]);
 		i = chdir(*path);
-		printf("i : %d\n", i);
+		protection_chdir(i);
 	}
 	else if (cmd[2])
-		exit(1);
+		exit(1);//error
 	else if (!strcmp(cmd[1], "-"))
 	{
 		path = get_pathcd(env, 0);
 		printf("%s\n", path[0]);
 		i = chdir(*path);
-		printf("%s\n", path[1]);
-		printf("i : %d\n", i);
+		protection_chdir(i);
 	}
 	else if (!strcmp(cmd[1], ".."))
 	{
-		getcwd(get, sizeof(get));
-		cmds = ft_strtrimbehind(get, "/");
-		printf("%s\n", cmds);
-		i = chdir(*cmd);
-		printf("i : %d\n", i);
+		i = chdir(cmd[1]);
+		protection_chdir(i);
 	}
 	else if (!strcmp(cmd[1], "."))
-	{
-		getcwd(get, sizeof(get));
-		printf("%s\n", get);
-	}
+		;
 	else
 	{
-		getcwd(get, sizeof(get));
-		printf("%s\n", get);
-		printf("%c\n", cmd[1][0]);
-		if (strcmp(cmd[1], "/"))
+		if (access(cmd[1], F_OK) == 0)
 		{
-			command = ft_strjoin(get, "/");
-			cmds = ft_strjoin(command, cmd[1]);
+			if (access(cmd[1], R_OK))
+				printf("plop"),exit(1);//error
+			else if (access(cmd[1], W_OK))
+				printf("ploplo"),exit(1);//error
+			else if (access(cmd[1], X_OK))
+				printf("plopl"),exit(1);//error
 		}
 		else
-			cmds = ft_strjoin(get, cmd[1]);
-		printf("%s\n", cmds);
-		if (access(cmds, F_OK) == 0)
-		{
-			if (access(cmds, R_OK))
-				exit(1);//error
-			else if (access(cmds, W_OK))
-				exit(1);//error
-			else if (access(cmds, X_OK))
-				exit(1);//error
-		}
-		else
-			exit(1);//error
-		i = chdir(cmds);
-		printf("why\n");
-		printf("i : %d\n", i);
+			printf("ploplol"),exit(1);//error
+	i = chdir(cmd[1]);
+	protection_chdir(i);
+	printf("%s\n", getcwd(get, sizeof(get)));
 	}
-	printf("why\n");
 	return (0);
 }
 
@@ -217,16 +189,9 @@ int	main(int ac, char **av, char **env)
 	char	cmds[256];
 	char	**cmd;
 
-	cmd = ft_split("cd ../exec", ' ');
+	cmd = ft_split("cd ~", ' ');
 	cd_builtin(env, cmd);
-	// printf("why\n");
-	// while(1);
-	// getcwd(cmds, sizeof(cmds));
-	// cmd = ft_strtrimbehind(cmds, "/");
-	// printf("%s\n", cmd);
-	// chdir(cmd);
-	// int i = chdir("cd ..");
-	// printf("%d\n", i);	
-	// while(1);
-	// printf("working directory : %s\n", cmds);
 }
+
+// ~ cd 
+// depends on ch7sl mn n9ta anrj3o lour

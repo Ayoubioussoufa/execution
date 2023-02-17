@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:28:01 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/14 12:54:21 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:21:02 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	ft_execute(t_shell *shell, char **env)
 	if (pid == 0)
 	{
 		shell->cmds = ft_split(shell->cmd, ' '); //split the given commands
-		printf("%s\n", shell->cmds[0]);
-		printf("%s\n", shell->cmds[0] + 1);
+		// printf("%s\n", shell->cmds[0]);
+		// printf("%s\n", shell->cmds[0] + 1);
 		shell->paths = get_paths(env, shell); //get all paths
 		shell->argv = get_cmd(shell->paths, shell->cmds[0]); // join the path with the command
 		if (execve(shell->argv, shell->cmds, env) == -1) //execute the cmd in the given env
@@ -327,7 +327,7 @@ ttyslot: This function is used to return the index of the slot in which the term
 
 ioctl: This function is used for performing various operations on devices such as terminals, disks, tapes etc. It takes three arguments – an integer file descriptor, an operation code and optionally some data depending on what operation needs to be performed – and performs that operation on that device associated with that file descriptor.
 
-getenv: This function is used for retrieving environment variables from the environment list maintained by the operating system. It takes one argument – a string containing the name of an environment variable – and returns a pointer to that variable’s value in case it exists in the environment list, or NULL otherwise.
+getenv: This function is used for retrieving environment variables from the environment list maintained by the operating system.  – and returns a pointer to that variable’s value in case it exists in the environment list, or NULL otherwise.
 
 tcsetattr: This function is used for setting parameters associated with terminals such as baud rate, parity etc. It takes three arguments – an integer file descriptor referring to a terminal device, optional flags indicating how certain parameters should be set, and another structure containing all parameters that need to be set – and sets those parameters accordingly for that terminal device associated with that file descriptor.
 
@@ -363,6 +363,8 @@ tputs: This function is used to output a string of characters on a terminal scre
 // 		unset_builtin();
 // 	else (!strncmp(shell->cmd, "exit"))
 // 		exit_builtin();
+	// else (!strncmp(shell->cmd, "env"))
+// 		env_builtin();
 // 	return (0);
 // }
 
