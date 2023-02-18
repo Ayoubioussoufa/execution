@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:09:29 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/17 15:04:28 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:58:01 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,24 +167,27 @@
 // 	// 	printf("%d|| %s\n", x, e[i++]);
 // }
 
-// void	unset_env(char *cmd, t_env *env)
-// {
-// 	t_env_elem	*elem;
+void	unset_env(char *cmd, t_env *env)
+{
+	t_env_elem	*elem;
 
-// 	elem = NULL;
-// 	if (cmd && !ft_isalpha(cmd[0]))
-// 	{
-// 		printf("minishell: unset: `%s`: not a valid identifier\n",
-// 			cmd);
-// 		//status
-// 	}
-// 	else
-// 	{
-// 		elem = search_env_elem(env, cmd);
-// 		if (elem)
-// 			del_env_elem(env, elem);
-// 	}
-// }
+	elem = NULL;
+	if (cmd && !ft_isalpha(cmd[0]))
+	{
+		printf("minishell: unset: `%s`: not a valid identifier\n",
+			cmd);
+		//status
+	}
+	else
+	{
+		elem = search_env_elem(env, cmd);
+		if (elem)
+			del_env_elem(env, elem);
+		// int i = 0;
+		// while (env->env[i])
+		// 	printf("%s\n", env->env[i++]);
+	}
+}
 
 int	unset_builtin(char **cmd, char ***ev)
 {
@@ -194,14 +197,17 @@ int	unset_builtin(char **cmd, char ***ev)
 	i = 1;
 	env = NULL;
 	env = create_env(*ev);
-	// while (cmd[i])
-	// {
-	// 	unset_env(cmd[i], env);
-	// 	i++;
-	// }
+	while (cmd[i])
+	{
+		unset_env(cmd[i], env);
+		i++;
+	}
+	// i = 0;
+	// while (env->env[i])
+	// 	printf("%s\n", env->env[i++]);
 	// *ev = convert_array(env);
 	// del_env(env);
-	// i = 1;
+	// i = 0;
 	// while (env->env[i])
 	// 	printf("%s\n", env->env[i++]);
 	return (1); //status hnayya succesfully
@@ -216,9 +222,11 @@ int	main(int ac, char **av, char **env)
 	// int	i;
 	
 	read = ft_split("unset TMPDIR", ' ');
-	// printf("%s\n", read[0]);
-	// printf("%s\n", read[1]);
+	printf("%s\n", read[0]);
+	printf("%s\n", read[1]);
+	printf("***************\n");
 	unset_builtin(read, &env);
+	// system("leaks a.out");
 	// i = 0;
 	// int	index;
 	// while(env[i])

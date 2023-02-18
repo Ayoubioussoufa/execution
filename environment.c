@@ -18,11 +18,20 @@ void	del_env_elem(t_env *env, t_env_elem *elem)
 		elem->next->prev = elem->prev;
 	if (elem && elem->prev)
 		elem->prev->next = elem->next;
-	env->size--;
+	printf("b %s\n", elem->key);
 	free(elem->key);
+	printf("a %s\n", elem->key);
+	printf("b %s\n", elem->value);
 	free(elem->value);
+	printf("a %s\n", elem->value);
 	free(elem);
+	printf("after free %s %s|\n", elem->key, elem->value);
+	env->size--;
 	elem = NULL;
+	printf("**********************\n");
+	// int	i = 0;
+	// while (env->env[i])
+	// 	printf("%s\n", env->env[i++]);
 }
 
 t_env_elem	*search_env_elem(t_env *env, char *key)
@@ -31,7 +40,13 @@ t_env_elem	*search_env_elem(t_env *env, char *key)
 
 	tmp = env->head;
 	while (tmp && strcmp(tmp->key, key))
+	{
+		// printf("%s\n", key);
+		// printf("%s\n", tmp->key);
 		tmp = tmp->next;
+	}
+	// printf("%s\n", key);
+	// printf("%s\n", tmp->key);
 	return (tmp);
 }
 
@@ -60,6 +75,9 @@ void	del_env(t_env *env)
 		tmp = tmp->next;
 	}
 	free(env);
+	// int i = 0;
+	// while (env->env[i])
+	// 	printf("%s\n", env->env[i++]);
 }
 
 char	**convert_array(t_env *env)
@@ -86,5 +104,8 @@ char	**convert_array(t_env *env)
 		}
 		arr[i] = NULL;
 	}
+	// i = 0;
+	// while (arr[i])
+	// 	printf("%s\n", arr[i++]);
 	return (arr);
 }

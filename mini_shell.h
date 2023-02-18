@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/17 14:13:43 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:02:14 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef	struct	shell
 }	t_shell;
 
 void    ft_error(char *str);
-int		ft_strchr(char *str, char c);
+// int		ft_strchr(char *str, char c);
 int		ft_strcmp(char *s1, char *s2);
 size_t	ft_strlen(const char *str);
 char	**ft_split(char const *str, char c);
@@ -63,7 +63,8 @@ char	*parse_redirect(char *line);
 int	handle_couts(t_shell *shell);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
-char	*ft_strjoin(char const *s1, char const *s2);
+// char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnstr(char *str, int n);
@@ -71,8 +72,9 @@ int    echo_builtin(char **cmd);
 void	ft_putchar(char c);
 int	unset_builtin(char **cmd, char ***ev);
 int	ft_isalpha(int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *source);
+char	*ft_strdup(char *str);
+// char	*ft_substr(char const *s, unsigned int start, size_t len);
+// char	*ft_strdup(const char *source);
 
 
 //env functions
