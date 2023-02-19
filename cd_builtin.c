@@ -6,52 +6,52 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:13:14 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/16 18:21:03 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:57:13 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-char	*ft_strdup(const char *source)
-{
-	char	*mem;
-	int		i;
+// char	*ft_strdup(const char *source)
+// {
+// 	char	*mem;
+// 	int		i;
 
-	i = 0;
-	mem = malloc((ft_strlen(source) + 1) * sizeof(char));
-	if (!mem)
-		return (NULL);
-	while (source[i] != '\0')
-	{
-		mem[i] = source[i];
-		i++;
-	}
-	mem[i] = '\0';
-	return (mem);
-}
+// 	i = 0;
+// 	mem = malloc((ft_strlen(source) + 1) * sizeof(char));
+// 	if (!mem)
+// 		return (NULL);
+// 	while (source[i] != '\0')
+// 	{
+// 		mem[i] = source[i];
+// 		i++;
+// 	}
+// 	mem[i] = '\0';
+// 	return (mem);
+// }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*mem;
-	size_t	lengthstring;
-	size_t	i;
+// char	*ft_substr(char const *s, unsigned int start, size_t len)
+// {
+// 	char	*mem;
+// 	size_t	lengthstring;
+// 	size_t	i;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	lengthstring = ft_strlen(s);
-	if (!s[0] || start >= lengthstring || len == 0)
-		return (ft_strdup(""));
-	if (len > (lengthstring - start))
-		len = lengthstring - start;
-	mem = malloc(len + 1);
-	if (!mem)
-		return (NULL);
-	while (len > i && s[start] != '\0')
-		mem[i++] = s[start++];
-	mem[i] = '\0';
-	return (mem);
-}
+// 	i = 0;
+// 	if (!s)
+// 		return (NULL);
+// 	lengthstring = ft_strlen(s);
+// 	if (!s[0] || start >= lengthstring || len == 0)
+// 		return (ft_strdup(""));
+// 	if (len > (lengthstring - start))
+// 		len = lengthstring - start;
+// 	mem = malloc(len + 1);
+// 	if (!mem)
+// 		return (NULL);
+// 	while (len > i && s[start] != '\0')
+// 		mem[i++] = s[start++];
+// 	mem[i] = '\0';
+// 	return (mem);
+// }
 
 
 int	check(char const *set, char s)
@@ -68,7 +68,7 @@ int	check(char const *set, char s)
 	return (0);
 }
 
-char	*ft_strtrimbehind(char const *s1, char const *set)
+char	*ft_strtrimbehind(char *s1, char const *set)
 {
 	int		i;
 	int		len;
@@ -140,14 +140,12 @@ int cd_builtin(char **env, char **cmd)
 	int	i;
 
 	i = 0;
-	if (!strcmp(cmd[0], "cd") && !cmd[1])
+	if (!strcmp(cmd[0], "cd") || ((!strcmp(cmd[0], "~")) && !cmd[1]))
 	{
 		path = get_pathcd(env, 1);
 		i = chdir(*path);
 		protection_chdir(i);
 	}
-	else if (cmd[2])
-		exit(1);//error
 	else if (!strcmp(cmd[1], "-"))
 	{
 		path = get_pathcd(env, 0);
@@ -175,9 +173,9 @@ int cd_builtin(char **env, char **cmd)
 		}
 		else
 			printf("ploplol"),exit(1);//error
-	i = chdir(cmd[1]);
-	protection_chdir(i);
-	printf("%s\n", getcwd(get, sizeof(get)));
+		i = chdir(cmd[1]);
+		protection_chdir(i);
+		printf("%s\n", getcwd(get, sizeof(get)));
 	}
 	return (0);
 }

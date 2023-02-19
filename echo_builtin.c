@@ -28,13 +28,8 @@ void	ft_putstr(char *s)
 		printf("0");
 		return ;
 	}
-	// printf("%s\n", s);
-	// while (1)
-	// if (!strcmp(s, "(null)"))
-	// 	ft_putchar('0');
 	len = ft_strlen(s);
-	while (i < len)
-		write(1, &s[i++], 1);
+	write(1, s, len);
 }
 
 void	ft_putnstr(char *str, int n)
@@ -44,8 +39,6 @@ void	ft_putnstr(char *str, int n)
 	i = -1;
 	if (n < 0)
 	{
-		// if (!strcmp(str, "(null)"))
-		// 	ft_putchar('0');
 		while (str[++i] && i < (int)ft_strlen(str) + n)
 			ft_putchar(str[i]);
 	}
@@ -78,27 +71,26 @@ void	echo(char **str, int pos)
 		ft_putstr(str[pos] + 1);
 	else
 		ft_putstr(str[pos]);
-	ft_putchar(' ');
 }
 
-void	echo_last(char **str, int pos)
-{
-	int		start;
-	int		end;
-	int		strl;
+// void	echo_last(char **str, int pos)
+// {
+// 	int		start;
+// 	int		end;
+// 	int		strl;
 
-	start = is_quote(str[pos][0]);
-	strl = ft_strlen(str[pos]);
-	end = is_quote(str[pos][strl - 1]);
-	if (end && start)
-		ft_putnstr(str[pos] + 1, -1);
-	else if (end)
-		ft_putnstr(str[pos], -1);
-	else if (start)
-		ft_putstr(str[pos] + 1);
-	else
-		ft_putstr(str[pos]);
-}
+// 	start = is_quote(str[pos][0]);
+// 	strl = ft_strlen(str[pos]);
+// 	end = is_quote(str[pos][strl - 1]);
+// 	if (end && start)
+// 		ft_putnstr(str[pos] + 1, -1);
+// 	else if (end)
+// 		ft_putnstr(str[pos], -1);
+// 	else if (start)
+// 		ft_putstr(str[pos] + 1);
+// 	else
+// 		ft_putstr(str[pos]);
+// }
 
 int	echo_builtin(char **cmd)
 {
@@ -125,23 +117,20 @@ int	echo_builtin(char **cmd)
 			i++;
 		}
 	}
-	// printf("%d\n", f);
 	if (f)
 		j++;
-	// printf("%d\n", j);
-	// while (1)
 	while (cmd[++j])
 	{
-		// printf("%s\n", cmd[j]);
-		// while (1)
-		if (cmd[j + 1])
+		if (cmd[j])
 			echo(cmd, j);
-		else
-			echo_last(cmd, j);
+		// size_t len = strlen(cmd[j]);
+        // write(STDOUT_FILENO, cmd[j], len);
 		if (!cmd[j + 1] && f)
 			ft_putchar('\n');
 		else if (!cmd[j + 1] && !f)
 			ft_putchar('\0');
+		else
+			ft_putchar(' ');
 	}
 	return (1);
 }
@@ -152,7 +141,7 @@ int	main()
 	char	**lol;
 
 	// cmd = ft_split("echo \"\\0\"", ' ');
-	cmd = ft_split("echo -n 0", ' ');
+	cmd = ft_split("echo \'\\\\\\\0\'", ' ');
 	// lol = ft_split("echo \0", ' ');
 	// printf("%s %s %s \n", cmd[0], cmd[1], cmd[2]);
 	// printf("%s %s \t \n", lol[0], lol[1]);
@@ -166,13 +155,42 @@ int	main()
 	// printf("%s\n", cmd[2]);
 }
 
+// int main(int argc, char *argv[]) {
+//     int i;
+//     for (i = 1; i < argc; i++) {
+//         if (i > 1) {
+//             write(STDOUT_FILENO, " ", 1); // add space separator between arguments
+//         }
+//         size_t len = strlen(argv[i]);
+//         write(STDOUT_FILENO, argv[i], len);
+//     }
+//     write(STDOUT_FILENO, "\n", 1); // add newline character at the end
+//     return 0;
+// }
+
 /* 
+bash-3.2$ echo '\0'
+\0
 bash-3.2$ echo \0
 0
-bash-3.2$ echo '\0' DONE
+bash-3.2$ echo \\0
 \0
-bash-3.2$ echo "\0" DONE
+bash-3.2$ echo \\\0
 \0
-bash-3.2$ echo 0 DONE
-0
+bash-3.2$ echo \\\\0
+\\0
+bash-3.2$ echo \\\\\0
+\\0
+bash-3.2$ echo \\\\\\0
+\\\0
+bash-3.2$ echo "\0"
+\0
+bash-3.2$ echo '\0'
+\0
+bash-3.2$ echo '\\\0'
+\\\0
+bash-3.2$ echo '\\\\\0'
+\\\\\0
+bash-3.2$ echo "\\\\\0"
+\\\0
 */

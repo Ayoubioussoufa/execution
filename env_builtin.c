@@ -6,13 +6,13 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:44:55 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/19 11:06:56 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:42:21 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-int env_builtin(char *cmd, char **env)
+int env_builtin(char **cmd, char **env)
 {
 	int	i;
 
@@ -33,3 +33,9 @@ int env_builtin(char *cmd, char **env)
 	}
 	return (1);
 }
+
+// int	main(int ac, char **av, char **env)
+// {
+// 	char **cmd = ft_split("env", ' ');
+// 	env_builtin(cmd, env);
+// }

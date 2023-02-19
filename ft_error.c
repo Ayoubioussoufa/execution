@@ -9,7 +9,7 @@ int	ft_perror(char *msg, char *utils)
 	return (EXIT_FAILURE);
 }
 
-int	ft_puterr(char *cmd, char *arg, char *msg, int err_num)
+int	ft_puterr(char *cmd, char *arg, char *msg, int errnum)
 {
 	write(2, "minishell: ", ft_strlen("minishell: "));
 	write(2, cmd, ft_strlen(cmd));

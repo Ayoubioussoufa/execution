@@ -6,14 +6,14 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:40:06 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/19 11:59:01 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:18:37 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-int	export_builtin(char **cmd)
-{
+// int	export_builtin(char **cmd)
+// {
 	//khass n initializi env in main and start using it everywhere it needs to be;
     //env init and creat
     //then in unset, i give it that struct olkhdma at3awd mmn lwl OR w9tma nssali ghadi nfreei on3mr struct b akhir env dyali, that might be a good idea
@@ -21,7 +21,7 @@ int	export_builtin(char **cmd)
     // f env ila kant chi haja bla = maghatktbch wlk
     // li fiha = bo7dha, f export katktb x="" , env katktb ghir x=
     // declare -x in bash f lwl dyal ayi jomla f export.
-}
+// }
 //les cas li f export :
 //export bo7dha
 //export b variable deja kayna  || makaynach
@@ -79,23 +79,55 @@ void	print_sorted_env(t_env *env)
 	}
 }
 
-int	ft_export(char ***ev, char **cmd)
+void	add_var(t_env *env, char *cmd)
+{
+	t_env_elem	*new;
+
+	new = new_env_elem(cmd);
+	add_env_elem(env, new);
+	int i = 0;
+	while (env->env[i])
+		printf("%s\n", env->env[i++]);
+	// printf("%s=%s\n", new->key, new->value);
+}
+
+int	export_builtin(char ***ev, char **cmd)
 {
 	t_env	*env;
+	int	i;
 
+	i = 1;
 	env = NULL;
 	env = create_env(*ev);
-	if (!cmd[1])
+	printf("*************************\n");
+	if (!cmd[i])
 		print_sorted_env(env);
 	else
 	{
-		if (!ft_isalpha(cmd[1][0]))
-			return (ft_puterr(cmd[0],
-					cmd[1], "not a valid identifier", EXIT_FAILURE));
-	*ev = convert_array(env);
+		while (cmd[i])
+		{
+			if (!ft_isalpha(cmd[i][0]))
+				return (ft_puterr(cmd[0],
+					cmd[i], "not a valid identifier", EXIT_FAILURE));
+			add_var(env, cmd[i]);
+			i++;
+		}
 	}
+	*ev = convert_array(env);
 	del_env(env);
 	// status = EXIT_SUCCESS;
 	// return (EXIT_SUCCESS);
     return (1);
+}
+
+int	main(int ac, char **av, char **env)
+{
+	char	**cmd;
+	int	i;
+
+	i = 0;
+	cmd = ft_split("export var", ' ');
+	export_builtin(&env, cmd);
+	// while (env[i])
+	// 	printf("%s\n", env[i++]);
 }

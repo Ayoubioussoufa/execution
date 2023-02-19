@@ -12,9 +12,9 @@
 
 #include "mini_shell.h"
 
-int	ft_pwd(char *cmd)
+int	pwd_builtin(char *cmd)
 {
-	char	cwd[1024];
+	char	cwd[256];
 	char	*dir;
 
 	(void)cmd;
@@ -29,3 +29,11 @@ int	ft_pwd(char *cmd)
 	//status = EXIT_SUCCESS;
 	return (0);
 }
+
+// int	main(int ac, char **av, char **env)
+// {
+// 	char	*cmd;
+
+// 	cmd = NULL;
+// 	pwd_builtin(cmd);
+// }

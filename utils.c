@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:24:04 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/17 16:12:04 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:54:54 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ int		ft_strcmp(char *s1, char *s2)
  	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-int ft_strchr(char *str, char c)
-{
-	int i;
+// int ft_strchr(char *str, char c)
+// {
+// 	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return(i);
-		i++;
-	}
-	return(0);
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		if (str[i] == c)
+// 			return(i);
+// 		i++;
+// 	}
+// 	return(0);
+// }
 
 int	ft_lstsize(t_shell *lst)
 {

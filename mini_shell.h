@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/18 13:02:14 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:52:57 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_putchar(char c);
 int	unset_builtin(char **cmd, char ***ev);
 int	ft_isalpha(int c);
 char	*ft_strdup(char *str);
+char	*ft_substr(char *s, int start, int len);
 // char	*ft_substr(char const *s, unsigned int start, size_t len);
 // char	*ft_strdup(const char *source);
 
@@ -87,6 +88,10 @@ t_env_elem	*new_env_elem(char *line);
 void	add_env_elem(t_env *env, t_env_elem *new);
 t_env_elem	*search_env_elem(t_env *env, char *key);
 void	del_env_elem(t_env *env, t_env_elem *elem);
+
+//error
+int	ft_puterr(char *cmd, char *arg, char *msg, int errnum);
+int	ft_perror(char *msg, char *utils);
 
 #endif
 
