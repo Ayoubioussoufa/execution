@@ -6,14 +6,30 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:44:55 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/15 13:46:16 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 11:06:56 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-int env_builtin()
+int env_builtin(char *cmd, char **env)
 {
-    // the environment li khdam bih f unset, khasni nb9a n rafraichih hnaya, du coup i need a struct env and give it to unset so whenever i change the env
-    return (0);
+	int	i;
+
+	i = 0;
+	if (!cmd[1])
+	{
+		while (env[i])
+		{
+			if (ft_strchr(env[i], '=') != -1)
+				printf("%s\n", env[i]);
+			i++;
+		}
+	}
+	else
+	{
+		// status = EXIT_FAILURE;
+		return (ft_perror("minishell: env: Too many arguments.", NULL));
+	}
+	return (1);
 }

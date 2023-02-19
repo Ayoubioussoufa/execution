@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:09:29 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/18 13:58:01 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/19 10:20:49 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,11 +197,12 @@ int	unset_builtin(char **cmd, char ***ev)
 	i = 1;
 	env = NULL;
 	env = create_env(*ev);
-	while (cmd[i])
-	{
-		unset_env(cmd[i], env);
-		i++;
-	}
+	// while (cmd[i])
+	// {
+	// 	unset_env(cmd[i], env);
+	// 	free(cmd[i]);
+	// 	i++;
+	// }
 	// i = 0;
 	// while (env->env[i])
 	// 	printf("%s\n", env->env[i++]);
