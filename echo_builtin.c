@@ -105,17 +105,12 @@ int	echo_builtin(char **cmd)
 	}
 	else if (cmd[1][0] == '-' && cmd[1][1] == 'n')
 	{
-		while (cmd[1][i])
-		{
-			if (cmd[1][i] == 'n')
-				f = 1;
-			else
-			{
-				f = 0;
-				break ;
-			}
+		while (cmd[1][i] == 'n')
 			i++;
-		}
+		if (cmd[1][i] && cmd[1][i] != 'n')
+				f = 0;
+		else
+			f = 1;
 	}
 	if (f)
 		j++;
@@ -141,7 +136,7 @@ int	main()
 	char	**lol;
 
 	// cmd = ft_split("echo \"\\0\"", ' ');
-	cmd = ft_split("echo \'\\\\\\\0\'", ' ');
+	cmd = ft_split("echo \"\\\\\\\\0\"", ' ');
 	// lol = ft_split("echo \0", ' ');
 	// printf("%s %s %s \n", cmd[0], cmd[1], cmd[2]);
 	// printf("%s %s \t \n", lol[0], lol[1]);
