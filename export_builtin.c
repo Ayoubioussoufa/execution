@@ -6,9 +6,10 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:40:06 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/20 17:07:11 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:09:00 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "mini_shell.h"
 
@@ -74,6 +75,8 @@ void	print_sorted_env(t_env *env)
 		printf("declare -x %s", current->key);
 		if (current->value)
 			printf("=\"%s\"", current->value);
+		else
+			printf("=\'\'"); 
 		printf("\n");
 		current = current->next;
 	}
@@ -121,6 +124,13 @@ void	add_env_elemb(t_env *env, t_env_elem *new)
 	int	i = 0;
 	while (env->env[i])
 		printf("%s\n", env->env[i++]);
+	new = new_env_elem(cmd);
+	search_env_elem(env, new->key);
+	add_env_elem(env, new);
+	// int i = 0;
+	// while (env->env[i])
+	// 	printf("%s\n", env->env[i++]);
+	// printf("%s=%s\n", new->key, new->value);
 }
 
 void	add_var(t_env *env, char *cmd)
@@ -171,6 +181,8 @@ int	export_builtin(char ***ev, char **cmd)
 	env = NULL;
 	env = create_env(*ev);
 	if (!cmd[i])
+	printf("*************************\n");
+	if (!cmd[1])
 		print_sorted_env(env);
 	else
 	{
@@ -182,6 +194,7 @@ int	export_builtin(char ***ev, char **cmd)
 			add_var(env, cmd[i]);
 			i++;
 		}
+		*ev = convert_array(env);
 	}
 	i = 0;
 	// while (env->env[i])
@@ -202,6 +215,7 @@ int	main(int ac, char **av, char **env)
 	i = 0;
 	cmd = ft_split("export erf=wrfwrf", ' ');
 	cmdd = ft_split("export", ' ');
+	cmd = ft_split("export", ' ');
 	export_builtin(&env, cmd);
 	// while (env[i])
 	// 	printf("%s\n", env[i++]);

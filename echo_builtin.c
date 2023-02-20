@@ -117,7 +117,7 @@ int	main()
 	char	**lol;
 
 	// cmd = ft_split("echo \"\\0\"", ' ');
-	cmd = ft_split("echo \'\\\\\\\0\'", ' ');
+	cmd = ft_split("echo \"\\\\\\\\0\"", ' ');
 	// lol = ft_split("echo \0", ' ');
 	// printf("%s %s %s \n", cmd[0], cmd[1], cmd[2]);
 	// printf("%s %s \t \n", lol[0], lol[1]);
