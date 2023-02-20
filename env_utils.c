@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:37:22 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/19 16:18:16 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:45:55 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,9 @@ void	add_env_elem(t_env *env, t_env_elem *new)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
+		env->size++;
 		tmp->next = new;
 		new->prev = tmp;
-		env->size++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:40:06 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/19 16:18:37 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:07:11 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,88 @@ void	print_sorted_env(t_env *env)
 	}
 }
 
+int	search_env_elemindex(t_env *env, char *key)
+{
+	t_env_elem	*tmp;
+
+	tmp = env->head;
+	while (tmp && strcmp(tmp->key, key))
+		tmp = tmp->next;
+	if (tmp && !strcmp(tmp->key, key))
+		return (1);
+	return (0);
+}
+
+void	modify_env(t_env *env, t_env_elem *new, char *cmd)
+{
+	del_env_elem(env, new);
+	int	i = 0;
+	while (env->env[i])
+		printf("%s\n", env->env[i++]);
+	// new = new_env_elem(cmd);
+	// add_env_elem(env, new);
+}
+
+void	add_env_elemb(t_env *env, t_env_elem *new)
+{
+	t_env_elem	*tmp;
+
+	tmp = env->head;
+	if (!env->head)
+		env->head = new;
+	else
+	{
+		while (tmp->next->next)
+			tmp = tmp->next;
+		env->size++;
+		tmp->next = new;
+		new->prev = tmp;
+		// new->next = tmp->next->next;
+		printf("%s %s\n", new->key, new->value);
+	}
+	int	i = 0;
+	while (env->env[i])
+		printf("%s\n", env->env[i++]);
+}
+
 void	add_var(t_env *env, char *cmd)
 {
 	t_env_elem	*new;
+	t_env_elem	*newl;
+	int	i;
 
-	new = new_env_elem(cmd);
-	add_env_elem(env, new);
-	int i = 0;
-	while (env->env[i])
-		printf("%s\n", env->env[i++]);
-	// printf("%s=%s\n", new->key, new->value);
+	new = NULL;
+	newl = NULL;
+	newl = new_env_elem(cmd);
+	new = search_env_elem(env, newl->key);
+	// printf("%s %s\n", newl->key, newl->value);
+	if (new)
+	{
+		free(new->value);
+		new->value = newl->value;
+	}
+	else
+	{
+		newl->key = ft_strjoin(newl->key, "=");
+		newl->key = ft_strjoin(newl->key, newl->value);
+		free(newl->value);
+		newl->value = NULL;
+		add_env_elemb(env, newl);
+		// printf("%s\n", newl->key);
+	}
+	// printf("key: %s %s\n", new->key, new->value);
+	// newl = search_env_elem(env, new->key);
+	// printf("%p\n", newl);
+	// if (newl)
+	// {
+	// 	del_env_elem(env, new);
+	// 	// newl = new_env_elem(cmd);
+	// 	// printf("%s=%s\n **************\n", newl->key, newl->value);
+	// 	// add_env_elem(env, newl);
+	// }
 }
+
+//ila kant fih  = rah ayt7 fl environment 
 
 int	export_builtin(char ***ev, char **cmd)
 {
@@ -99,7 +170,6 @@ int	export_builtin(char ***ev, char **cmd)
 	i = 1;
 	env = NULL;
 	env = create_env(*ev);
-	printf("*************************\n");
 	if (!cmd[i])
 		print_sorted_env(env);
 	else
@@ -113,6 +183,9 @@ int	export_builtin(char ***ev, char **cmd)
 			i++;
 		}
 	}
+	i = 0;
+	// while (env->env[i])
+	// 	printf("%s\n", env->env[i++]);
 	*ev = convert_array(env);
 	del_env(env);
 	// status = EXIT_SUCCESS;
@@ -123,11 +196,15 @@ int	export_builtin(char ***ev, char **cmd)
 int	main(int ac, char **av, char **env)
 {
 	char	**cmd;
+	char	**cmdd;
 	int	i;
 
 	i = 0;
-	cmd = ft_split("export var", ' ');
+	cmd = ft_split("export erf=wrfwrf", ' ');
+	cmdd = ft_split("export", ' ');
 	export_builtin(&env, cmd);
 	// while (env[i])
 	// 	printf("%s\n", env[i++]);
+	// export_builtin(&env, cmdd);
+	// system("leaks a.out");
 }

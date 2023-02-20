@@ -73,25 +73,6 @@ void	echo(char **str, int pos)
 		ft_putstr(str[pos]);
 }
 
-// void	echo_last(char **str, int pos)
-// {
-// 	int		start;
-// 	int		end;
-// 	int		strl;
-
-// 	start = is_quote(str[pos][0]);
-// 	strl = ft_strlen(str[pos]);
-// 	end = is_quote(str[pos][strl - 1]);
-// 	if (end && start)
-// 		ft_putnstr(str[pos] + 1, -1);
-// 	else if (end)
-// 		ft_putnstr(str[pos], -1);
-// 	else if (start)
-// 		ft_putstr(str[pos] + 1);
-// 	else
-// 		ft_putstr(str[pos]);
-// }
-
 int	echo_builtin(char **cmd)
 {
 	int	j = 0;
@@ -105,17 +86,12 @@ int	echo_builtin(char **cmd)
 	}
 	else if (cmd[1][0] == '-' && cmd[1][1] == 'n')
 	{
-		while (cmd[1][i])
-		{
-			if (cmd[1][i] == 'n')
-				f = 1;
-			else
-			{
-				f = 0;
-				break ;
-			}
+		while (cmd[1][i] == 'n')
 			i++;
-		}
+		if (cmd[1][i] && cmd[1][i] != 'n')
+				f = 0;
+		else
+			f = 1;
 	}
 	if (f)
 		j++;

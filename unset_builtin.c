@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:09:29 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/19 14:37:31 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:53:21 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ int	unset_builtin(char **cmd, char ***ev)
 }
 //STATUS needed !
 
-// int	main(int ac, char **av, char **env)
-// {
-// 	(void)ac;
-// 	(void)av;
-// 	char **read;
-// 	int	i;
+int	main(int ac, char **av, char **env)
+{
+	(void)ac;
+	(void)av;
+	char **read;
+	int	i;
 	
-// 	read = ft_split("unset ebbeb", ' ');
-// 	unset_builtin(read, &env);
-// 	i = 0;
-// 	while (env[i])
-// 		printf("%s\n", env[i++]);
-// 	system("leaks a.out");
-// }
+	read = ft_split("unset ebbeb", ' ');
+	unset_builtin(read, &env);
+	i = 0;
+	while (env[i])
+		printf("%s\n", env[i++]);
+	system("leaks a.out");
+}
