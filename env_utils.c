@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:37:22 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/20 16:45:55 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:06:39 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,11 +130,13 @@ t_env_elem	*new_env_elem(char *line)
 			return (NULL);
 		elem->key = key;
 		elem->value = value;
+		elem->isprintable = 1;
 	}
 	else
 	{
 		elem->key = ft_strdup(line);
 		elem->value = NULL;
+		elem->isprintable = 0;
 	}
 	return (elem);
 }

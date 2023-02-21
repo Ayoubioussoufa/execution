@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:36:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/02/19 15:52:57 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:05:14 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_env_elem
 	char				*value;
 	struct s_env_elem	*next;
 	struct s_env_elem	*prev;
+	int					isprintable;
 }	t_env_elem;
 
 typedef struct s_env

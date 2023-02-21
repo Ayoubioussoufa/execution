@@ -20,7 +20,7 @@ int	ft_puterr(char *cmd, char *arg, char *msg, int errnum)
 		perror("");
 	else
 		printf("%s\n", msg);
-	// status = err_num;
-	//return (err_num);
+	// status = errnum;
+	//return (errnum);
     return (1); // for the moment
 }

@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:24:11 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/16 13:24:32 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:11:17 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int main(int ac, char **av, char **env)
 		// 	shell = shell->next;
 		// }
 		// handle_couts(shell);
-		ft_execut£e(shell, env);
+		ft_execute(shell, env);
 		//while(shell)
 		//{
 		//	printf("%s\t %d\n", shell->cmd, shell->type);

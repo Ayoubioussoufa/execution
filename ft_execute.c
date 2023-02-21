@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:28:01 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/15 14:21:02 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:11:45 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,22 +351,22 @@ tputs: This function is used to output a string of characters on a terminal scre
 
 //for pwd : PWD in env	
 
-// int	check_builtins(t_shell *shell)
-// {//kola built in nsiftha l fonction dyalha
-// 	if (!strncmp(shell->cmd, "echo"))
-// 		echo_builtin(shell->cmd);
-// 	else if(!strncmp(shell->cmd, "cd"))
-// 		cd_builtin(shell->cmd);
-// 	else if(!strncmp(shell->cmd, "export"))
-// 		export_builtin();
-// 	else if (!strncmp(shell->cmd, "unset"))
-// 		unset_builtin();
-// 	else (!strncmp(shell->cmd, "exit"))
-// 		exit_builtin();
-	// else (!strncmp(shell->cmd, "env"))
-// 		env_builtin();
-// 	return (0);
-// }
+int	check_builtins(t_shell *shell, char ***env)
+{
+	if (!strncmp(shell->cmd, "echo"))
+		echo_builtin(shell->cmd);
+	else if(!strncmp(shell->cmd, "cd"))
+		cd_builtin(shell->cmd);
+	else if(!strncmp(shell->cmd, "export"))
+		export_builtin(shell->cmd, env);
+	else if (!strncmp(shell->cmd, "unset"))
+		unset_builtin(shell->cmd, env);
+	else (!strncmp(shell->cmd, "exit"))
+		exit_builtin();
+	else (!strncmp(shell->cmd, "env"))
+		env_builtin(shell->cmd, *env);
+	return (0);
+}
 
 // void	checkingcmd(t_shell *shell, char **env)
 // {
